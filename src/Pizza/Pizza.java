@@ -21,7 +21,7 @@ public class Pizza {
 		this.pizza = pizza;
 	}
 
-	public Cell[][] getPizza() {
+	public Cell[][] getCellMatrix() {
 		return pizza;
 	}
 
