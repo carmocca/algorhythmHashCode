@@ -4,22 +4,22 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class Pizza {
-	private Cell [][] pizza;
-	private List<Slice> sliceList;
+  private Cell[][] pizza;
+  private List<Slice> sliceList;
 
-	public Pizza(int r, int c) {
-		pizza = new Cell[r][c];
-		for(int i= 0; i<r;i++){
-			for(int j = 0;j<c;j++){
-				pizza[i][j]= new Cell();
-			}
-		}
-		sliceList = new ArrayList<Slice>();
-	}
+  public Pizza(int r, int c) {
+    pizza = new Cell[r][c];
+    for (int i = 0; i < r; i++) {
+      for (int j = 0; j < c; j++) {
+        pizza[i][j] = new Cell();
+      }
+    }
+    sliceList = new ArrayList<Slice>();
+  }
 
-	public void setPizza(Cell[][] pizza) {
-		this.pizza = pizza;
-	}
+  public void setPizza(Cell[][] pizza) {
+    this.pizza = pizza;
+  }
 
 	public Cell[][] getCellMatrix() {
 		return pizza;
