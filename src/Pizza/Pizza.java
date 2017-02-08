@@ -1,10 +1,15 @@
 package Pizza;
 
+import java.util.List;
+import java.util.ArrayList;
+
 public class Pizza {
 	private char [][] pizza;
+	private List<Slice> sliceList;
 
 	public Pizza(int r, int c) {
 		pizza = new char[r][c];
+		sliceList = new ArrayList<Slice>();
 	}
 
 	public void setPizza(char[][] pizza) {
@@ -25,6 +30,19 @@ public class Pizza {
 		return pizza[r][c];
 	}
 
+	public void addSlice(Slice s) {
+	    sliceList.add(s);
+    }
+
+    public void removeSlice(Slice s) {
+	    sliceList.remove(s);
+    }
+
+	public List<Slice> getSlices() {
+	    return sliceList;
+    }
+
+    @Override
 	public String toString() {
 		String str = "";
 		for (int i = 0; i < pizza.length; i++) {
