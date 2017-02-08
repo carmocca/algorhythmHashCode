@@ -2,6 +2,7 @@ package Pizza;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -15,7 +16,9 @@ public class Main {
         }
 		
 		Pizza pizza;
+        List<Slice> slicesList;
 		final int R, C, L, H;
+		int S;
 		
 		R = sc.nextInt();
 		C = sc.nextInt();
@@ -33,5 +36,17 @@ public class Main {
 		sc.close();
 
         System.out.printf("R:%d C:%d L:%d H:%d\nPizza:\n%s\n", R, C, L, H, pizza.toString());
+
+        slicesList = pizza.getSlices();
+        S = slicesList.size();
+        System.out.println(S);
+        for (int i = 0; i < S; i++) {
+            Slice slice = slicesList.get(i);
+            System.out.printf("%d %d %d %d\n",
+                                slice.getRowx(),
+                                slice.getRowy(),
+                                slice.getColx(),
+                                slice.getColy());
+        }
 	}
 }
