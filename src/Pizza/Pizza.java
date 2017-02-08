@@ -64,6 +64,6 @@ public class Pizza {
 	}
 
 	public boolean belongsToSlice(int r, int c){
-		return pizza[r][c].getSlice() ==  null;
+		return pizza[r][c].getSlice() !=  null;
 	}
 }
