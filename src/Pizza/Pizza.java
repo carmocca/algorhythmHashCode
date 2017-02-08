@@ -17,8 +17,8 @@ public class Pizza {
     sliceList = new ArrayList<Slice>();
   }
 
-  public void setPizza(Cell[][] pizza) {
-    this.pizza = pizza;
+  public void setCellMatrix(Cell[][] matrix) {
+    this.pizza = matrix;
   }
 
 	public Cell[][] getCellMatrix() {
@@ -63,7 +63,7 @@ public class Pizza {
 		return str;
 	}
 
-	public boolean hasSliceIn(int r, int c){
-		return pizza[r][c].getSlice() !=  null;
+	public boolean belongsToSlice(int r, int c){
+		return pizza[r][c].getSlice() ==  null;
 	}
 }

@@ -1,7 +1,5 @@
 package Pizza;
 
-import java.util.List;
-
 public class PizzaSolver {
 
   private Pizza pizza;
@@ -10,12 +8,14 @@ public class PizzaSolver {
     this.pizza = pizza;
   }
 
-  public void generateSlices() {
-    for (int i = 0; i < pizza.getPizza().length; i++) {
-      for (int j = 0; j < pizza.getPizza()[0].length; j++) {
-        if (belongsToSlice(pizza.getPizza()[i][j]))
+  public void generateSlices(int min, int max) {
+    for (int i = 0; i < pizza.getCellMatrix().length; i++) {
+      for (int j = 0; j < pizza.getCellMatrix()[0].length; j++) {
+        if (pizza.belongsToSlice(i,j)) {
           continue;
-        generateSlice(pizza.getPizza()[i][j]);
+        } else {
+          generateSlice(pizza.getCellMatrix()[i][j], min, max);
+        }
       }
     }
   }
