@@ -15,4 +15,51 @@ public class Slice {
   }
 
 
+  public int getRowx() {
+    return rowx;
+  }
+
+  public void setRowx(int rowx) {
+    this.rowx = rowx;
+  }
+
+  public int getColx() {
+    return colx;
+  }
+
+  public void setColx(int colx) {
+    this.colx = colx;
+  }
+
+  public int getRowy() {
+    return rowy;
+  }
+
+  public void setRowy(int rowy) {
+    this.rowy = rowy;
+  }
+
+  public int getColy() {
+    return coly;
+  }
+
+  public void setColy(int coly) {
+    this.coly = coly;
+  }
+
+  public int getMax() {
+    return max;
+  }
+
+  public void setMax(int max) {
+    this.max = max;
+  }
+
+  public Pizza.Pizza getPizza() {
+    return pizza;
+  }
+
+  public void setPizza(Pizza.Pizza pizza) {
+    this.pizza = pizza;
+  }
 }
