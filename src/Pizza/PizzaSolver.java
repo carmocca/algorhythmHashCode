@@ -14,9 +14,13 @@ public class PizzaSolver {
         if (pizza.belongsToSlice(i,j)) {
           continue;
         } else {
-          generateSlice(pizza.getCellMatrix()[i][j], min, max);
+          generateSlice(pizza.getIngredient(i,j), min, max, i, j);
         }
       }
     }
+  }
+
+  public void generateSlice(char ingredient, int minIngredient, int maxCells, int row, int col) {
+
   }
 }
