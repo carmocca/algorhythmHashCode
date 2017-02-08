@@ -1,15 +1,13 @@
 package Pizza;
 
 public class Slice {
-  int rowx,colx,rowy,coly;
-  int max;
+  private int rowx,colx,rowy,coly;
 
-  public Slice(int rx, int ry,int cx, int cy, int max) {
+  public Slice(int rx, int ry,int cx, int cy) {
     this.rowx = rx;
     this.colx = cx;
     this.rowy = ry;
     this.coly = cy;
-    this.max = max;
   }
 
   public int getRowx() {
@@ -44,12 +42,34 @@ public class Slice {
     this.coly = coly;
   }
 
-  public int getMax() {
-    return max;
+  @Override
+  public String toString() {
+    String s = getRowx() + " " +
+               getRowy() + " " +
+               getColx() + " " +
+               getColy();
+    return s;
   }
 
-  public void setMax(int max) {
-    this.max = max;
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    Slice slice = (Slice) o;
+
+    if (getRowx() != slice.getRowx()) return false;
+    if (getColx() != slice.getColx()) return false;
+    if (getRowy() != slice.getRowy()) return false;
+    return getColy() == slice.getColy();
   }
 
+  @Override
+  public int hashCode() {
+    int result = getRowx();
+    result = 31 * result + getColx();
+    result = 31 * result + getRowy();
+    result = 31 * result + getColy();
+    return result;
+  }
 }
