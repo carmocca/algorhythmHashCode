@@ -42,12 +42,7 @@ public class Main {
     S = slicesList.size();
     System.out.println(S);
     for (int i = 0; i < S; i++) {
-      Slice slice = slicesList.get(i);
-      System.out.printf("%d %d %d %d\n",
-                slice.getRowx(),
-                slice.getRowy(),
-                slice.getColx(),
-                slice.getColy());
+      System.out.println(slicesList.get(i).toString());
     }
 	}
 }
