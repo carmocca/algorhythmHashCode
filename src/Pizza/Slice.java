@@ -1,53 +1,58 @@
 package Pizza;
 
 public class Slice {
-  private int rowx,colx,rowy,coly;
+  /*  rowX = row of point 1
+      colX = column of point 1
+      rowY = row of point 2
+      colY = column of point 2
+   */
+  private int rowX, colX, rowY, colY;
 
-  public Slice(int rx, int ry,int cx, int cy) {
-    this.rowx = rx;
-    this.colx = cx;
-    this.rowy = ry;
-    this.coly = cy;
+  public Slice(int rx, int cx, int ry, int cy) {
+    this.rowX = rx;
+    this.colX = cx;
+    this.rowY = ry;
+    this.colY = cy;
   }
 
-  public int getRowx() {
-    return rowx;
+  public int getRowX() {
+    return rowX;
   }
 
-  public void setRowx(int rowx) {
-    this.rowx = rowx;
+  public void setRowX(int rowX) {
+    this.rowX = rowX;
   }
 
-  public int getColx() {
-    return colx;
+  public int getColX() {
+    return colX;
   }
 
-  public void setColx(int colx) {
-    this.colx = colx;
+  public void setColX(int colX) {
+    this.colX = colX;
   }
 
-  public int getRowy() {
-    return rowy;
+  public int getRowY() {
+    return rowY;
   }
 
-  public void setRowy(int rowy) {
-    this.rowy = rowy;
+  public void setRowY(int rowY) {
+    this.rowY = rowY;
   }
 
-  public int getColy() {
-    return coly;
+  public int getColY() {
+    return colY;
   }
 
-  public void setColy(int coly) {
-    this.coly = coly;
+  public void setColY(int colY) {
+    this.colY = colY;
   }
 
   @Override
   public String toString() {
-    String s = getRowx() + " " +
-               getRowy() + " " +
-               getColx() + " " +
-               getColy();
+    String s = getRowX() + " " +
+               getRowY() + " " +
+               getColX() + " " +
+               getColY();
     return s;
   }
 
@@ -58,18 +63,18 @@ public class Slice {
 
     Slice slice = (Slice) o;
 
-    if (getRowx() != slice.getRowx()) return false;
-    if (getColx() != slice.getColx()) return false;
-    if (getRowy() != slice.getRowy()) return false;
-    return getColy() == slice.getColy();
+    if (getRowX() != slice.getRowX()) return false;
+    if (getColX() != slice.getColX()) return false;
+    if (getRowY() != slice.getRowY()) return false;
+    return getColY() == slice.getColY();
   }
 
   @Override
   public int hashCode() {
-    int result = getRowx();
-    result = 31 * result + getColx();
-    result = 31 * result + getRowy();
-    result = 31 * result + getColy();
+    int result = getRowX();
+    result = 31 * result + getColX();
+    result = 31 * result + getRowY();
+    result = 31 * result + getColY();
     return result;
   }
 }
