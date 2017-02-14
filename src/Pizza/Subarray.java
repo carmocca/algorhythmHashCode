@@ -42,11 +42,13 @@ class Subarray
     maxSize = 4;
     System.out.println("");
     assertEquals("MaxSum: 4, range: [(0, 0)(3, 0)]", generateSlice(maxSize, 0, 0));
-    assertEquals("MaxSum: 4, range: [(1, 0)(2, 1)]", generateSlice(maxSize, 1, 0));  // TODO, NOT WORKING
+    assertEquals("MaxSum: 4, range: [(1, 0)(1, 3)]", generateSlice(maxSize, 1, 0));   // (1, 0)(2, 1)?
     assertEquals("MaxSum: 4, range: [(0, 1)(3, 1)]", generateSlice(maxSize, 0, 1));
-    assertEquals("MaxSum: 4, range: [(1, 1)(2, 2)]", generateSlice(maxSize, 1, 1));
+    assertEquals("MaxSum: 4, range: [(1, 1)(1, 4)]", generateSlice(maxSize, 1, 1));   // (1, 1)(2, 2)?
     assertEquals("MaxSum: 4, range: [(2, 0)(3, 1)]", generateSlice(maxSize, 2, 0));
     assertEquals("MaxSum: 4, range: [(0, 2)(3, 2)]", generateSlice(maxSize, 0, 2));
+    assertEquals("MaxSum: 4, range: [(2, 2)(3, 3)]", generateSlice(maxSize, 2, 2));
+    assertEquals("MaxSum: 4, range: [(2, 3)(3, 4)]", generateSlice(maxSize, 2, 3));   //TODO
     maxSize = 1;
     System.out.println("");
     assertEquals("MaxSum: 1, range: [(0, 0)(0, 0)]", generateSlice(maxSize, 0, 0));
@@ -119,7 +121,7 @@ class Subarray
     int colY = startingCol;
 
     if ((startingRow == rows - 1 && startingCol == cols - 1) || // In case the subarray is equal to the array
-        (maxCells == 1)){                       // In case that only one cell is allowed per slice
+        (maxCells == 1)){                                       // In case that only one cell is allowed per slice
       System.out.printf("MaxSum: %d, range: [(%d, %d)(%d, %d)]\n", 1, rowX, colX, rowY, colY);
       return String.format("MaxSum: %d, range: [(%d, %d)(%d, %d)]", 1, rowX, colX, rowY, colY);
     }
@@ -152,7 +154,7 @@ class Subarray
         int[] currentResult = kadaneForRightDown(kadaneArr, startingRow, startingCol);
         if (currentResult[0] > maxSum && currentResult[0] <= maxCells) {
           maxSum = currentResult[0];
-          rowY = startingRow;
+          rowY = row;
           colY = currentResult[1];
         }
         if (kadaneArrSize == maxCells) {
