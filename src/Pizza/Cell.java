@@ -30,6 +30,6 @@ public class Cell {
 
   @Override
   public String toString() {
-    return "[" + ingredient + ", " + slice + "]";
+    return "" + ingredient;
   }
 }

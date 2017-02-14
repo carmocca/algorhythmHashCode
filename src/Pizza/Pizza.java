@@ -31,7 +31,7 @@ public class Pizza {
     }
 	}
 
-	public void setSlice(int r, int c, Slice s){
+	public void setCellSlice(int r, int c, Slice s){
 		pizza[r][c].setSlice(s);
 	}
 	
@@ -50,6 +50,16 @@ public class Pizza {
 	public List<Slice> getSlices() {
 	  return sliceList;
   }
+
+	public int getCellsInSlice() {
+		int count = 0;
+		for (int i = 0; i < pizza.length; i++) {
+			for (int j = 0; j < pizza[0].length; j++) {
+				if (pizza[i][j].getSlice() != null) { count++; }
+			}
+		}
+		return count;
+	}
 
   @Override
 	public String toString() {

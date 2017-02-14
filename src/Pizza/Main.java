@@ -2,6 +2,7 @@ package Pizza;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.Scanner;
 
@@ -14,7 +15,16 @@ public class Main {
       System.out.println(e.toString());
       System.exit(0);
     }
-		
+
+		PrintWriter pw = null;
+		try {
+			pw = new PrintWriter("out/Pizza/example.out");
+		} catch (IOException e) {
+			System.out.println(e.toString());
+			System.exit(0);
+		}
+
+
 		Pizza pizza;
     List<Slice> slicesList;
 		final int R, C, L, H;
@@ -31,18 +41,24 @@ public class Main {
 			String row = sc.nextLine();
 			for (int j = 0; j < C; j++) {
 				pizza.setIngredient(i, j, row.charAt(j));
-				pizza.setSlice(i,j,null);
+				pizza.setCellSlice(i,j,null);
 			}
 		}
 		sc.close();
 
-    System.out.printf("R:%d C:%d L:%d H:%d\nPizza:\n%s\n", R, C, L, H, pizza.toString());
+    //System.out.printf("R:%d C:%d L:%d H:%d\nPizza:\n%s\n", R, C, L, H, pizza.toString());
+
+		PizzaSolver pizzaSolver = new PizzaSolver(pizza);
+		pizzaSolver.generateSlices(L, H);
 
     slicesList = pizza.getSlices();
     S = slicesList.size();
-    System.out.println(S);
+    pw.println(S);
     for (int i = 0; i < S; i++) {
-      System.out.println(slicesList.get(i).toString());
+      pw.println(slicesList.get(i).toString());
     }
+		pw.close();
+
+		System.out.println((double) pizza.getCellsInSlice()/(R*C));
 	}
 }
