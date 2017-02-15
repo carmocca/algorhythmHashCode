@@ -21,59 +21,61 @@ public class Pizza {
     this.pizza = matrix;
   }
 
-	public Cell[][] getCellMatrix() {
-		return pizza;
-	}
+  public Cell[][] getCellMatrix() {
+    return pizza;
+  }
 
-	public void setIngredient(int r, int c, char i) {
-	  if (i == 'T' || i == 'M') {
-	    pizza[r][c].setIngredient(i);
+  public void setIngredient(int r, int c, char i) {
+    if (i == 'T' || i == 'M') {
+      pizza[r][c].setIngredient(i);
     }
-	}
+  }
 
-	public void setCellSlice(int r, int c, Slice s){
-		pizza[r][c].setSlice(s);
-	}
-	
-	public char getIngredient(int r, int c) {
-		return pizza[r][c].getIngredient();
-	}
+  public void setCellSlice(int r, int c, Slice s) {
+    pizza[r][c].setSlice(s);
+  }
 
-	public void addSlice(Slice s) {
-	  sliceList.add(s);
+  public char getIngredient(int r, int c) {
+    return pizza[r][c].getIngredient();
+  }
+
+  public void addSlice(Slice s) {
+    sliceList.add(s);
   }
 
   public void removeSlice(Slice s) {
-	  sliceList.remove(s);
+    sliceList.remove(s);
   }
 
-	public List<Slice> getSlices() {
-	  return sliceList;
+  public List<Slice> getSlices() {
+    return sliceList;
   }
 
-	public int getCellsInSlice() {
-		int count = 0;
-		for (int i = 0; i < pizza.length; i++) {
-			for (int j = 0; j < pizza[0].length; j++) {
-				if (pizza[i][j].getSlice() != null) { count++; }
-			}
-		}
-		return count;
-	}
+  public int getCellsInSlice() {
+    int count = 0;
+    for (int i = 0; i < pizza.length; i++) {
+      for (int j = 0; j < pizza[0].length; j++) {
+        if (pizza[i][j].getSlice() != null) {
+          count++;
+        }
+      }
+    }
+    return count;
+  }
 
   @Override
-	public String toString() {
-		String str = "";
-		for (int i = 0; i < pizza.length; i++) {
-			for (int j = 0; j < pizza[0].length; j++) {
-				str += pizza[i][j];
-			}
-			str += '\n';
-		}
-		return str;
-	}
+  public String toString() {
+    String str = "";
+    for (int i = 0; i < pizza.length; i++) {
+      for (int j = 0; j < pizza[0].length; j++) {
+        str += pizza[i][j];
+      }
+      str += '\n';
+    }
+    return str;
+  }
 
-	public boolean belongsToSlice(int r, int c){
-		return pizza[r][c].getSlice() !=  null;
-	}
+  public boolean belongsToSlice(int r, int c) {
+    return pizza[r][c].getSlice() != null;
+  }
 }
