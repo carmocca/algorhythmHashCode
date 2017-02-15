@@ -50,8 +50,8 @@ public class Slice {
   @Override
   public String toString() {
     String s = getRowX() + " " +
-               getRowY() + " " +
                getColX() + " " +
+               getRowY() + " " +
                getColY();
     return s;
   }

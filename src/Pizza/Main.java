@@ -57,7 +57,7 @@ public class Main {
       pw.close();
 
       // Percentage of the pizza covered
-      System.out.println((double) pizza.getCellsInSlice() / (R * C));
+      System.out.println(S + " - " + (double) pizza.getCellsInSlice() / (R * C));
 
     } catch (IOException e) {
       System.out.println(e.toString());
