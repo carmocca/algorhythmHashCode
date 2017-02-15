@@ -1,7 +1,7 @@
 package Pizza;
 
-import java.lang.*;
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /*
      BASE FOR THE PIZZASOLVER ALGORITHM

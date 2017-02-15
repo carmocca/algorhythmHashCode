@@ -28,9 +28,8 @@ public class PizzaSolver {
    * startingCol = starting column (0-based)
    */
   public void generateSlice(int minIngredient, int maxCells, int startingRow, int startingCol) {
-    Cell [][] matrix = pizza.getCellMatrix();
-    int cols = matrix[0].length;
-    int rows = matrix.length;
+    int cols = pizza.getCellMatrix()[0].length;
+    int rows = pizza.getCellMatrix().length;
     int maxSum = 0;
     int rowY = -1, colY = -1;
     int columnSize = (maxCells < rows - startingRow) ? maxCells : rows - startingRow;

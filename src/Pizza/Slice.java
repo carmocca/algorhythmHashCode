@@ -55,26 +55,4 @@ public class Slice {
                getColY();
     return s;
   }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-
-    Slice slice = (Slice) o;
-
-    if (getRowX() != slice.getRowX()) return false;
-    if (getColX() != slice.getColX()) return false;
-    if (getRowY() != slice.getRowY()) return false;
-    return getColY() == slice.getColY();
-  }
-
-  @Override
-  public int hashCode() {
-    int result = getRowX();
-    result = 31 * result + getColX();
-    result = 31 * result + getRowY();
-    result = 31 * result + getColY();
-    return result;
-  }
 }
