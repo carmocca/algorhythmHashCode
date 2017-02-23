@@ -26,7 +26,7 @@ public class Main {
     PrintWriter pw = null;
     try {
       sc = new Scanner(new File(inputFilePath));
-      pw = new PrintWriter(outputFilePath);
+      //pw = new PrintWriter(outputFilePath);
 
       V = sc.nextInt();
       E = sc.nextInt();
@@ -69,7 +69,7 @@ public class Main {
       sc.close();
 
 
-      pw.close();
+      //pw.close();
 
     } catch (IOException e) {
       System.out.println(e.toString());
