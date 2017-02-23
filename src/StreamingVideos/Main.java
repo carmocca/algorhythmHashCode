@@ -9,9 +9,9 @@ import java.util.Scanner;
 
 public class Main {
   public static void main(String[] args) {
-    processFile("resources/StreamingVideos/example.in", "out/StreamingVideo/example.out");
-    //processFile("resources/StreamingVideos/kittens.in", "out/StreamingVideo/kittens.out");
-    //processFile("resources/StreamingVideos/me_at_the_zoo.in", "out/StreamingVideo/me_at_the_zoo.out");
+    processFile("resources/StreamingVideos/example.in", "out/StreamingVideos/example.out");
+    //processFile("resources/StreamingVideos/kittens.in", "out/StreamingVideos/kittens.out");
+    //processFile("resources/StreamingVideos/me_at_the_zoo.in", "out/StreamingVideos/me_at_the_zoo.out");
     //processFile("resources/StreamingVideos/trending_today.in", "out/StreamingVideos/trending_today.out");
     //processFile("resources/StreamingVideos/videos_worth_spreading.in", "out/StreamingVideos/videos_worth_spreading.out");
   }
@@ -28,7 +28,7 @@ public class Main {
     PrintWriter pw = null;
     try {
       sc = new Scanner(new File(inputFilePath));
-      //pw = new PrintWriter(outputFilePath);
+      pw = new PrintWriter(outputFilePath);
 
       V = sc.nextInt();
       E = sc.nextInt();
@@ -67,15 +67,16 @@ public class Main {
         int Rn = sc.nextInt();
         Request request = new Request(Rn, Rv, Re);
         requestList.add(request);
-        endpointList.get(request.endpointID).addRequest(request);
+        endpointList.get(request.getEndpointID()).addRequest(request);
       }
       sc.close();
 
+      usedCaches = new ArrayList<>();
       for (Endpoint endpoint : endpointList) {
         for (Request request : endpoint.getRequests()) {
           for (Connection connection : endpoint.getConnections()) {
             int videoSize = videoList.get(request.getVideoID()).getSize();
-            int dataCenterLatency = endpoint.latency;
+            int dataCenterLatency = endpoint.getLatency();
             int cacheLatency = connection.getLatency();
             int requestQuantity = request.getQuantity();
             int saving = (dataCenterLatency - cacheLatency) * requestQuantity;
@@ -88,13 +89,11 @@ public class Main {
         }
       }
 
-      /*
       pw.println(usedCaches.size());
       for (CacheServer cache : usedCaches) {
         pw.println(cache.toString());
       }
       pw.close();
-      */
 
     } catch (IOException e) {
       System.out.println(e.toString());

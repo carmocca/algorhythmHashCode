@@ -14,6 +14,7 @@ public class CacheServer {
     this.id = id;
     this.capacity = capacity;
     endpoints = new ArrayList<>();
+    videos = new ArrayList<>();
   }
 
   public int getId() {
