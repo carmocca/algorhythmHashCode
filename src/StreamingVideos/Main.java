@@ -9,8 +9,8 @@ import java.util.Scanner;
 
 public class Main {
   public static void main(String[] args) {
-    processFile("resources/StreamingVideos/example.in", "out/StreamingVideos/example.out");
-    //processFile("resources/StreamingVideos/kittens.in", "out/StreamingVideos/kittens.out");
+    //processFile("resources/StreamingVideos/example.in", "out/StreamingVideos/example.out");
+    processFile("resources/StreamingVideos/kittens.in", "out/StreamingVideos/kittens.out");
     //processFile("resources/StreamingVideos/me_at_the_zoo.in", "out/StreamingVideos/me_at_the_zoo.out");
     //processFile("resources/StreamingVideos/trending_today.in", "out/StreamingVideos/trending_today.out");
     //processFile("resources/StreamingVideos/videos_worth_spreading.in", "out/StreamingVideos/videos_worth_spreading.out");
@@ -71,7 +71,6 @@ public class Main {
       }
       sc.close();
 
-      usedCaches = new ArrayList<>();
       for (Endpoint endpoint : endpointList) {
         for (Request request : endpoint.getRequests()) {
           for (Connection connection : endpoint.getConnections()) {
@@ -83,15 +82,21 @@ public class Main {
             int priority = saving / videoSize;
             // Meter priority a alguna ED
             if (saving > 0) {
-              Saving s = new Saving(videoList.get(request.getVideoID()), priority);
-              connection.cacheServer.addSavingToPriority(s);
+              connection.cacheServer.addSavingToPriority(new Saving(videoList.get(request.getVideoID()), priority));
             }
           }
         }
       }
 
-      for (CacheServer cache : usedCaches) {
+      for (CacheServer cache : cacheList) {
         cache.fill();
+      }
+
+      usedCaches = new ArrayList<>();
+      for(CacheServer cache : cacheList){
+        if (!cache.getVideos().isEmpty()){
+          usedCaches.add(cache);
+        }
       }
 
       pw.println(usedCaches.size());
