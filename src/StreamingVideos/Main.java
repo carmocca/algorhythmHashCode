@@ -9,8 +9,8 @@ import java.util.Scanner;
 
 public class Main {
   public static void main(String[] args) {
-    processFile("resources/StreamingVideos/example.in", "out/StreamingVideos/example.out");
-    //processFile("resources/StreamingVideos/kittens.in", "out/StreamingVideos/kittens.out");
+    //processFile("resources/StreamingVideos/example.in", "out/StreamingVideos/example.out");
+    processFile("resources/StreamingVideos/kittens.in", "out/StreamingVideos/kittens.out");
     //processFile("resources/StreamingVideos/me_at_the_zoo.in", "out/StreamingVideos/me_at_the_zoo.out");
     //processFile("resources/StreamingVideos/trending_today.in", "out/StreamingVideos/trending_today.out");
     //processFile("resources/StreamingVideos/videos_worth_spreading.in", "out/StreamingVideos/videos_worth_spreading.out");
@@ -20,7 +20,6 @@ public class Main {
     final int V, E, R, C, X;
     List<Video> videoList;
     List<CacheServer> cacheList;
-    List<CacheServer> usedCaches;
     List<Endpoint> endpointList;
     List<Request> requestList;
 
@@ -74,10 +73,15 @@ public class Main {
       }
       sc.close();
 
-      usedCaches = new ArrayList<>();
-      for (Endpoint endpoint : endpointList) {
-        for (Request request : endpoint.getRequests()) {
-          for (Connection connection : endpoint.getConnections()) {
+      boolean salir = false;
+      for (int i = 0; i < endpointList.size() && !salir; i++) {
+        Endpoint endpoint = endpointList.get(i);
+        List<Request> requests = endpoint.getRequests();
+        for (int i1 = 0; i1 < requests.size() && !salir; i1++) {
+          Request request = requests.get(i1);
+          List<Connection> connections = endpoint.getConnections();
+          for (int i2 = 0; i2 < connections.size() && !salir; i2++) {
+            Connection connection = connections.get(i2);
             int videoSize = videoList.get(request.getVideoID()).getSize();
             int dataCenterLatency = endpoint.getLatency();
             int cacheLatency = connection.getLatency();
@@ -85,9 +89,14 @@ public class Main {
             int saving = (dataCenterLatency - cacheLatency) * requestQuantity;
             int priority = saving / videoSize;
             if (saving > 0) {
-              Video video = videoList.get(request.getVideoID());
-              Saving s = new Saving(video, priority);
-              connection.cacheServer.addSavingToPriority(s);
+              try {
+                Video video = videoList.get(request.getVideoID());
+                Saving s = new Saving(video, priority);
+                connection.cacheServer.addSavingToPriority(s);
+              }catch (OutOfMemoryError e){
+                salir = true;
+                break;
+              }
             }
           }
         }
@@ -97,16 +106,8 @@ public class Main {
         cache.fill();
       }
 
-      usedCaches = new ArrayList<>();
-      for(CacheServer cache : cacheList){
-        if (!cache.getVideos().isEmpty()){
-          usedCaches.add(cache);
-        }
-      }
-
-      System.out.printf("Number of used caches: %d\n\n", usedCaches.size());
-      pw.println(usedCaches.size());
-      for (CacheServer cache : usedCaches) {
+      pw.println(cacheList.size());
+      for (CacheServer cache : cacheList) {
         pw.println(cache.toString());
       }
       pw.close();
