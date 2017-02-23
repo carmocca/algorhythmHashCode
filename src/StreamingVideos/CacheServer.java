@@ -1,20 +1,21 @@
 package StreamingVideos;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class CacheServer {
 
   int id;
   int capacity;
   List<Endpoint> endpoints;
-  List<Video> videos;
+  Queue<Saving> savings;
+  Set<Video> videos;
 
   public CacheServer(int id, int capacity) {
     this.id = id;
     this.capacity = capacity;
     endpoints = new ArrayList<>();
-    videos = new ArrayList<>();
+    savings = new PriorityQueue<Saving>();
+    videos = new HashSet<>();
   }
 
   public int getId() {
@@ -50,5 +51,13 @@ public class CacheServer {
       str += " " + video.getId();
     }
     return str;
+  }
+
+  public Queue<Saving> getSavings() {
+    return savings;
+  }
+
+  public Set<Video> getVideos() {
+    return videos;
   }
 }
