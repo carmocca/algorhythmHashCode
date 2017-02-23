@@ -90,6 +90,10 @@ public class Main {
         }
       }
 
+      for (CacheServer cache : usedCaches) {
+        cache.fill();
+      }
+
       pw.println(usedCaches.size());
       for (CacheServer cache : usedCaches) {
         pw.println(cache.toString());
