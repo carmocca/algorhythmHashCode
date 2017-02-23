@@ -1,7 +1,5 @@
 package StreamingVideos;
 
-import sun.misc.Cache;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +8,7 @@ public class CacheServer {
   int id;
   int capacity;
   List<Endpoint> endpoints;
+  List<Video> videos;
 
   public CacheServer(int id, int capacity) {
     this.id = id;
@@ -39,5 +38,16 @@ public class CacheServer {
 
   public List<Endpoint> getEndpoints() {
     return endpoints;
+  }
+
+  public void addVideo(Video v) { this.videos.add(v); }
+
+  @Override
+  public String toString() {
+    String str = "" + id;
+    for (Video video : videos) {
+      str += " " + video.getId();
+    }
+    return str;
   }
 }
