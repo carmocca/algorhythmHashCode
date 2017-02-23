@@ -1,7 +1,5 @@
 package StreamingVideos;
 
-import com.sun.org.apache.regexp.internal.RE;
-
 import java.util.LinkedList;
 import java.util.List;
 
@@ -26,7 +24,7 @@ public class Endpoint {
     videoRequests.add(request);
   }
 
-  public List<Request> getRequest(){
+  public List<Request> getRequests(){
     return videoRequests;
   }
 

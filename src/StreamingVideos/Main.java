@@ -66,8 +66,23 @@ public class Main {
         int Rn = sc.nextInt();
         Request request = new Request(Rn, Rv, Re);
         requestList.add(request);
+        endpointList.get(request.endpointID).addRequest(request);
       }
       sc.close();
+
+      for (Endpoint endpoint : endpointList) {
+        for (Request request : endpoint.getRequests()) {
+          for (Connection connection : endpoint.getConnections()) {
+            int videoSize = videoList.get(request.getVideoID()).getSize();
+            int saving = (endpoint.latency - connection.getLatency()) * request.getQuantity();
+            int priority = saving / videoSize;
+            // Meter priority a alguna ED
+            if (saving > 0) {
+
+            }
+          }
+        }
+      }
 
 
       //pw.close();
