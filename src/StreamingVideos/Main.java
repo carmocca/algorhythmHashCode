@@ -20,6 +20,7 @@ public class Main {
     final int V, E, R, C, X;
     List<Video> videoList;
     List<CacheServer> cacheList;
+    List<CacheServer> usedCaches;
     List<Endpoint> endpointList;
     List<Request> requestList;
 
@@ -84,8 +85,13 @@ public class Main {
         }
       }
 
-
-      //pw.close();
+      /*
+      pw.println(usedCaches.size());
+      for (CacheServer cache : usedCaches) {
+        pw.println(cache.toString());
+      }
+      pw.close();
+      */
 
     } catch (IOException e) {
       System.out.println(e.toString());
