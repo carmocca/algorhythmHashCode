@@ -71,6 +71,7 @@ public class Main {
       }
       sc.close();
 
+      usedCaches = new ArrayList<>();
       for (Endpoint endpoint : endpointList) {
         for (Request request : endpoint.getRequests()) {
           for (Connection connection : endpoint.getConnections()) {
@@ -82,7 +83,9 @@ public class Main {
             int priority = saving / videoSize;
             // Meter priority a alguna ED
             if (saving > 0) {
-              connection.cacheServer.addSavingToPriority(new Saving(videoList.get(request.getVideoID()), priority));
+              Video video = videoList.get(request.getVideoID());
+              Saving s = new Saving(video, priority);
+              connection.cacheServer.addSavingToPriority(s);
             }
           }
         }
@@ -99,6 +102,7 @@ public class Main {
         }
       }
 
+      System.out.printf("Number of used caches: %d\n\n" + usedCaches.size());
       pw.println(usedCaches.size());
       for (CacheServer cache : usedCaches) {
         pw.println(cache.toString());
