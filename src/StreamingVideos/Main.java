@@ -9,8 +9,8 @@ import java.util.Scanner;
 
 public class Main {
   public static void main(String[] args) {
-    processFile("resources/StreamingVideos/example.in", "out/StreamingVideos/example.out");
-    //processFile("resources/StreamingVideos/kittens.in", "out/StreamingVideos/kittens.out");
+    //processFile("resources/StreamingVideos/example.in", "out/StreamingVideos/example.out");
+    processFile("resources/StreamingVideos/kittens.in", "out/StreamingVideos/kittens.out");
     //processFile("resources/StreamingVideos/me_at_the_zoo.in", "out/StreamingVideos/me_at_the_zoo.out");
     //processFile("resources/StreamingVideos/trending_today.in", "out/StreamingVideos/trending_today.out");
     //processFile("resources/StreamingVideos/videos_worth_spreading.in", "out/StreamingVideos/videos_worth_spreading.out");
@@ -85,7 +85,8 @@ public class Main {
             int saving = (dataCenterLatency - cacheLatency) * requestQuantity;
             int priority = saving / videoSize;
             if (saving > 0) {
-              Saving s = new Saving(videoList.get(request.getVideoID()),priority);
+              Video video = videoList.get(request.getVideoID());
+              Saving s = new Saving(video, priority);
               connection.cacheServer.addSavingToPriority(s);
             }
           }

@@ -35,7 +35,7 @@ public class CacheServer {
     this.capacity = capacity;
   }
 
-  public void addEndpoint(Endpoint e){
+  public void addEndpoint(Endpoint e) {
     this.endpoints.add(e);
   }
 
@@ -43,7 +43,9 @@ public class CacheServer {
     return endpoints;
   }
 
-  public void addVideo(Video v) { this.videos.add(v); }
+  public void addVideo(Video v) {
+    this.videos.add(v);
+  }
 
   @Override
   public String toString() {
@@ -62,14 +64,14 @@ public class CacheServer {
     return videos;
   }
 
-  public void addSavingToPriority(Saving s){
+  public void addSavingToPriority(Saving s) {
     savings.add(s);
   }
 
   public void fill() {
-    while(!savings.isEmpty()){
+    while (!savings.isEmpty()) {
       Saving saving = savings.poll();
-      if(!videos.contains(saving.getVideo()) && size + saving.getVideo().getSize() < capacity) {
+      if (!videos.contains(saving.getVideo()) && size + saving.getVideo().getSize() < capacity) {
         size += saving.getVideo().getSize();
         videos.add(saving.getVideo());
       }
