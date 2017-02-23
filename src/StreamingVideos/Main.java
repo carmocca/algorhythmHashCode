@@ -81,11 +81,13 @@ public class Main {
             int priority = saving / videoSize;
             // Meter priority a alguna ED
             if (saving > 0) {
-
+              Saving s = new Saving(videoList.get(request.getVideoID()),priority);
+              connection.cacheServer.addSavingToPriority(s);
             }
           }
         }
       }
+
 
 
       //pw.close();

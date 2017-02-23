@@ -7,7 +7,7 @@ public class CacheServer {
   int id;
   int capacity;
   List<Endpoint> endpoints;
-  Queue<Saving> savings;
+  PriorityQueue<Saving> savings;
   Set<Video> videos;
 
   public CacheServer(int id, int capacity) {
@@ -59,5 +59,9 @@ public class CacheServer {
 
   public Set<Video> getVideos() {
     return videos;
+  }
+
+  public void addSavingToPriority(Saving s){
+    savings.add(s);
   }
 }
