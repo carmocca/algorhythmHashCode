@@ -1,6 +1,6 @@
 package StreamingVideos;
 
-public class Saving implements Comparable{
+public class Saving implements Comparable {
 
   Video video;
   int priority;
@@ -21,12 +21,12 @@ public class Saving implements Comparable{
   @Override
   public int compareTo(Object o) {
     Saving other = (Saving) o;
-    if(priority > other.getPriority()){
+    if (priority > other.getPriority()) {
       return -1;
-    }else{
-      if(priority < other.getPriority()){
+    } else {
+      if (priority < other.getPriority()) {
         return 1;
-      }else{
+      } else {
         return 0;
       }
     }
