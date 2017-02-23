@@ -9,11 +9,11 @@ import java.util.Scanner;
 
 public class Main {
   public static void main(String[] args) {
-    //processFile("resources/StreamingVideos/example.in", "out/StreamingVideos/example.out");
-    processFile("resources/StreamingVideos/kittens.in", "out/StreamingVideos/kittens.out");
-    //processFile("resources/StreamingVideos/me_at_the_zoo.in", "out/StreamingVideos/me_at_the_zoo.out");
-    //processFile("resources/StreamingVideos/trending_today.in", "out/StreamingVideos/trending_today.out");
-    //processFile("resources/StreamingVideos/videos_worth_spreading.in", "out/StreamingVideos/videos_worth_spreading.out");
+    processFile("resources/StreamingVideos/example.in", "out/StreamingVideos/example.out");
+    //processFile("resources/StreamingVideos/kittens.in", "out/StreamingVideos/kittens.out");
+    processFile("resources/StreamingVideos/me_at_the_zoo.in", "out/StreamingVideos/me_at_the_zoo.out");
+    processFile("resources/StreamingVideos/trending_today.in", "out/StreamingVideos/trending_today.out");
+    processFile("resources/StreamingVideos/videos_worth_spreading.in", "out/StreamingVideos/videos_worth_spreading.out");
   }
 
   public static void processFile(String inputFilePath, String outputFilePath) {
@@ -97,7 +97,7 @@ public class Main {
         cache.fill();
       }
 
-      System.out.printf("Number of used caches: %d\n\n" + usedCaches.size());
+      System.out.printf("Number of used caches: %d\n\n", usedCaches.size());
       pw.println(usedCaches.size());
       for (CacheServer cache : usedCaches) {
         pw.println(cache.toString());
