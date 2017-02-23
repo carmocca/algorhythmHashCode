@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-  public static void Main(String[] args) {
+  public static void main(String[] args) {
     processFile("resources/StreamingVideos/kittens.in", "out/StreamingVideo/kittens.out");
     processFile("resources/StreamingVideos/me_at_the_zoo.in", "out/StreamingVideo/me_at_the_zoo.out");
     processFile("resources/StreamingVideos/trending_today.in", "out/StreamingVideos/trending_today.out");
