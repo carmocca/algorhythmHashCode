@@ -75,7 +75,10 @@ public class Main {
         for (Request request : endpoint.getRequests()) {
           for (Connection connection : endpoint.getConnections()) {
             int videoSize = videoList.get(request.getVideoID()).getSize();
-            int saving = (endpoint.latency - connection.getLatency()) * request.getQuantity();
+            int dataCenterLatency = endpoint.latency;
+            int cacheLatency = connection.getLatency();
+            int requestQuantity = request.getQuantity();
+            int saving = (dataCenterLatency - cacheLatency) * requestQuantity;
             int priority = saving / videoSize;
             // Meter priority a alguna ED
             if (saving > 0) {
