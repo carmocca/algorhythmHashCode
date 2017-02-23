@@ -36,6 +36,9 @@ public class Main {
       C = sc.nextInt();
       X = sc.nextInt();
 
+      System.out.println("FILE: " + inputFilePath.substring(26));
+      System.out.printf("Videos: %d\nEndpoints: %d\nRequests: %d\nCache: %d\nCapacity: %d\n", V, E, R, C, X);
+
       cacheList = new ArrayList<>(C);
       for (int cacheId = 0; cacheId < C; cacheId++) {
         cacheList.add(new CacheServer(cacheId, X));
@@ -94,6 +97,7 @@ public class Main {
         cache.fill();
       }
 
+      System.out.println("Number of used caches: " + usedCaches.size());
       pw.println(usedCaches.size());
       for (CacheServer cache : usedCaches) {
         pw.println(cache.toString());
