@@ -84,7 +84,6 @@ public class Main {
             int requestQuantity = request.getQuantity();
             int saving = (dataCenterLatency - cacheLatency) * requestQuantity;
             int priority = saving / videoSize;
-            // Meter priority a alguna ED
             if (saving > 0) {
               Saving s = new Saving(videoList.get(request.getVideoID()),priority);
               connection.cacheServer.addSavingToPriority(s);
@@ -97,7 +96,7 @@ public class Main {
         cache.fill();
       }
 
-      System.out.println("Number of used caches: " + usedCaches.size());
+      System.out.printf("Number of used caches: %d\n\n" + usedCaches.size());
       pw.println(usedCaches.size());
       for (CacheServer cache : usedCaches) {
         pw.println(cache.toString());
