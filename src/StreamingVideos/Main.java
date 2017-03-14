@@ -7,13 +7,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/*
+ *  IDEAS FOR IMPROVEMENT:
+ *  Idea 1: After we added (video, server) it'll change the "improvement score" only for pairs (video, other server) so we can maintain them using set and don't recalculate each time
+ *  Idea 2: The cost of adding a video is not constant. The bigger video — the less number of videos we can add. So lets divide improvement for each pair by size of video
+ *
+ */
+
 public class Main {
   public static void main(String[] args) {
-    //processFile("resources/StreamingVideos/example.in", "out/StreamingVideos/example.out");
-    processFile("resources/StreamingVideos/kittens.in", "out/StreamingVideos/kittens.out");
-    //processFile("resources/StreamingVideos/me_at_the_zoo.in", "out/StreamingVideos/me_at_the_zoo.out");
-    //processFile("resources/StreamingVideos/trending_today.in", "out/StreamingVideos/trending_today.out");
-    //processFile("resources/StreamingVideos/videos_worth_spreading.in", "out/StreamingVideos/videos_worth_spreading.out");
+    processFile("resources/StreamingVideos/example.in", "out/StreamingVideos/example.out");
+    // processFile("resources/StreamingVideos/kittens.in", "out/StreamingVideos/kittens.out"); // TOO SLOW
+    processFile("resources/StreamingVideos/me_at_the_zoo.in", "out/StreamingVideos/me_at_the_zoo.out");
+    processFile("resources/StreamingVideos/trending_today.in", "out/StreamingVideos/trending_today.out");
+    processFile("resources/StreamingVideos/videos_worth_spreading.in", "out/StreamingVideos/videos_worth_spreading.out");
   }
 
   public static void processFile(String inputFilePath, String outputFilePath) {
@@ -73,15 +80,11 @@ public class Main {
       }
       sc.close();
 
-      boolean salir = false;
-      for (int i = 0; i < endpointList.size() && !salir; i++) {
-        Endpoint endpoint = endpointList.get(i);
+      for (Endpoint endpoint : endpointList) {
         List<Request> requests = endpoint.getRequests();
-        for (int i1 = 0; i1 < requests.size() && !salir; i1++) {
-          Request request = requests.get(i1);
+        for (Request request : requests) {
           List<Connection> connections = endpoint.getConnections();
-          for (int i2 = 0; i2 < connections.size() && !salir; i2++) {
-            Connection connection = connections.get(i2);
+          for (Connection connection : connections) {
             int videoSize = videoList.get(request.getVideoID()).getSize();
             int dataCenterLatency = endpoint.getLatency();
             int cacheLatency = connection.getLatency();
@@ -89,14 +92,9 @@ public class Main {
             int saving = (dataCenterLatency - cacheLatency) * requestQuantity;
             int priority = saving / videoSize;
             if (saving > 0) {
-              try {
-                Video video = videoList.get(request.getVideoID());
-                Saving s = new Saving(video, priority);
-                connection.cacheServer.addSavingToPriority(s);
-              }catch (OutOfMemoryError e){
-                salir = true;
-                break;
-              }
+              Video video = videoList.get(request.getVideoID());
+              Saving s = new Saving(video, priority);
+              connection.getCacheServer().addSavingToPriority(s);
             }
           }
         }

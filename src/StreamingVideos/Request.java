@@ -1,7 +1,7 @@
 package StreamingVideos;
 
 public class Request {
-  int quantity, videoID,endpointID;
+  int quantity, videoID, endpointID;
 
   public Request(int quantity, int videoID, int endpointID) {
     this.quantity = quantity;

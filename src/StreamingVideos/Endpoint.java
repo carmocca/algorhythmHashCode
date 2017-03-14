@@ -21,19 +21,19 @@ public class Endpoint {
     return latency;
   }
 
-  public void addCacheServer(CacheServer c,int latency){
-    cacheServerConnections.add(new Connection(c,latency));
+  public void addCacheServer(CacheServer c, int latency) {
+    cacheServerConnections.add(new Connection(c, latency));
   }
 
-  public void addRequest(Request request){
+  public void addRequest(Request request) {
     videoRequests.add(request);
   }
 
-  public List<Request> getRequests(){
+  public List<Request> getRequests() {
     return videoRequests;
   }
 
-  public List<Connection> getConnections(){
-    return cacheServerConnections ;
+  public List<Connection> getConnections() {
+    return cacheServerConnections;
   }
 }
