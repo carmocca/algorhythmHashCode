@@ -20,8 +20,8 @@ public class Main {
     final int R, C, L, H;
     int S;
 
-    Scanner sc = null;
-    PrintWriter pw = null;
+    Scanner sc;
+    PrintWriter pw;
     try {
       sc = new Scanner(new File(inputFilePath));
       pw = new PrintWriter(outputFilePath);

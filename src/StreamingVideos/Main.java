@@ -28,10 +28,9 @@ public class Main {
     List<Video> videoList;
     List<CacheServer> cacheList;
     List<Endpoint> endpointList;
-    List<Request> requestList;
 
-    Scanner sc = null;
-    PrintWriter pw = null;
+    Scanner sc;
+    PrintWriter pw;
     try {
       sc = new Scanner(new File(inputFilePath));
       pw = new PrintWriter(outputFilePath);
@@ -43,7 +42,7 @@ public class Main {
       X = sc.nextInt();
 
       System.out.println("FILE: " + inputFilePath.substring(26));
-      System.out.printf("Videos: %d\nEndpoints: %d\nRequests: %d\nCache: %d\nCapacity: %d\n", V, E, R, C, X);
+      System.out.printf("Videos: %d\nEndpoints: %d\nRequests: %d\nCache: %d\nCapacity: %d\n\n", V, E, R, C, X);
 
       cacheList = new ArrayList<>(C);
       for (int cacheId = 0; cacheId < C; cacheId++) {
@@ -69,13 +68,11 @@ public class Main {
         endpointList.add(endpoint);
       }
 
-      requestList = new ArrayList<>(R);
       for (int requestId = 0; requestId < R; requestId++) {
         int Rv = sc.nextInt();
         int Re = sc.nextInt();
         int Rn = sc.nextInt();
         Request request = new Request(Rn, Rv, Re);
-        requestList.add(request);
         endpointList.get(request.getEndpointID()).addRequest(request);
       }
       sc.close();

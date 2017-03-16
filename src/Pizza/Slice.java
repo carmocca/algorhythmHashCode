@@ -49,10 +49,9 @@ public class Slice {
 
   @Override
   public String toString() {
-    String s = getRowX() + " " +
-               getColX() + " " +
-               getRowY() + " " +
-               getColY();
-    return s;
+    return getRowX() + " " +
+            getColX() + " " +
+            getRowY() + " " +
+            getColY();
   }
 }

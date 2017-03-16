@@ -15,7 +15,7 @@ public class CacheServer {
     this.id = id;
     this.capacity = capacity;
     endpoints = new ArrayList<>();
-    savings = new PriorityQueue<Saving>();
+    savings = new PriorityQueue<>();
     videos = new HashSet<>();
   }
 

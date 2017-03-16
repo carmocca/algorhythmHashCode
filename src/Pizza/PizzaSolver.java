@@ -11,9 +11,7 @@ public class PizzaSolver {
   public void generateSlices(int min, int max) {
     for (int i = 0; i < pizza.getCellMatrix().length; i++) {
       for (int j = 0; j < pizza.getCellMatrix()[0].length; j++) {
-        if (pizza.belongsToSlice(i,j)) {
-          continue;
-        } else {
+        if (!pizza.belongsToSlice(i, j)) {
           generateSlice(min, max, i, j);
         }
       }
@@ -38,8 +36,10 @@ public class PizzaSolver {
     boolean belongsToSlice = false;
 
     for (int col = startingCol; col < cols; col++) {
-      if (maxSum + columnSize > maxCells) { break; }
-      for (int row = startingRow; row < columnSize + startingRow; row ++) {
+      if (maxSum + columnSize > maxCells) {
+        break;
+      }
+      for (int row = startingRow; row < columnSize + startingRow; row++) {
         if (pizza.belongsToSlice(row, col)) { // TODO, possible optimization
           belongsToSlice = true;
           break;
@@ -76,7 +76,9 @@ public class PizzaSolver {
       tomatoes = 0;
       belongsToSlice = false;
       for (int row = startingRow; row < rows; row++) {
-        if (maxSum + rowSize > maxCells) { break; }
+        if (maxSum + rowSize > maxCells) {
+          break;
+        }
         for (int col = startingCol; col < rowSize + startingCol; col++) {
           if (pizza.belongsToSlice(row, col)) { // TODO, possible optimization
             belongsToSlice = true;
@@ -108,7 +110,7 @@ public class PizzaSolver {
       return;
     }
 
-    Slice slice = new Slice (startingRow, startingCol, rowY, colY);
+    Slice slice = new Slice(startingRow, startingCol, rowY, colY);
     pizza.addSlice(slice);
     for (int row = startingRow; row <= rowY; row++) {
       for (int col = startingCol; col <= colY; col++) {
